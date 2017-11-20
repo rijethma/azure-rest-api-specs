@@ -26,9 +26,17 @@ These are the global settings for the KeyVault API.
 
 ``` yaml
 openapi-type: data-plane
-tag: package-2016-10
+tag: package-v70
 ```
 
+### Tag: package-v70
+
+These settings apply only when `--tag=package-v70` is specified on the command line.
+
+``` yaml $(tag) == 'package-v70'
+input-file:
+- Microsoft.KeyVault/7.0-preview/keyvault.json
+```
 
 ### Tag: package-2016-10
 
@@ -75,6 +83,15 @@ go:
   license-header: MICROSOFT_APACHE_NO_VERSION
   namespace: keyvault
   clear-output-folder: true
+```
+
+### Tag: package-v70 and go
+
+These settings apply only when `--tag=package-v70 --go` is specified on the command line.
+Please also specify `--go-sdk-folder=<path to the root directory of your azure-sdk-for-go clone>`.
+
+``` yaml $(tag) == 'package-v70' && $(go)
+output-folder: $(go-sdk-folder)/services/keyvault/7.0-preview/keyvault
 ```
 
 ### Tag: package-2016-10 and go

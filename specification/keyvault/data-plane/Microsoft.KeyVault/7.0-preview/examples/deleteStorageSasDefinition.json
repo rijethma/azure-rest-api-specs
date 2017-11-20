@@ -1,0 +1,26 @@
+{
+   "parameters":{
+      "storage-account-name":"deletesas01",
+      "sas-definition-name":"deleteStrgSasDef01",
+      "api-version":"7.0-preview"
+   },
+   "responses":{
+      "200":{
+         "headers":{
+
+         },
+         "body":{
+            "id":"https://storage-sdk-test.vault-int.azure-int.net/storage/deletesas01/sas/deleteStrgSasDef01",
+            "sid":"https://storage-sdk-test.vault-int.azure-int.net/secrets/deletesas01-deleteStrgSasDef01",
+            "templateUri":"https://storage1.blob.core.windows.net/cont1?st=2017-10-30T19%3A54%3A00Z&se=2017-10-31T19%3A54%3A00Z&sp=rw&ss=bq&sv=2016-05-31&sr=c&sig=DummySignature",
+            "sasType":"account",
+            "validityPeriod":"P10D",
+            "attributes":{
+               "enabled":true,
+               "created":1490738438,
+               "updated":1490738438
+            }
+         }
+      }
+   }
+}

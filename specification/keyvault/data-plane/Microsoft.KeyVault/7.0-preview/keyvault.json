@@ -1,0 +1,420 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "KeyVaultClient",
+    "description": "The key vault client performs cryptographic key operations and vault operations against the Key Vault service.",
+    "version": "7.0-preview"
+  },
+  "x-ms-parameterized-host": {
+    "hostTemplate": "{vaultBaseUrl}",
+    "useSchemePrefix": false,
+    "positionInOperation": "first",
+    "parameters": [
+      {
+        "name": "vaultBaseUrl",
+        "description": "The vault name, for example https://myvault.vault.azure.net.",
+        "required": true,
+        "type": "string",
+        "in": "path",
+        "x-ms-skip-url-encoding": true
+      }
+    ]
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/storage/{storage-account-name}/sas/{sas-definition-name}": {
+      "delete": {
+        "tags": [
+          "Storage"
+        ],
+        "operationId": "DeleteSasDefinition",
+        "description": "Deletes a SAS definition from a specified storage account.",
+        "parameters": [
+          {
+            "name": "storage-account-name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9a-zA-Z]+$",
+            "description": "The name of the storage account."
+          },
+          {
+            "name": "sas-definition-name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9a-zA-Z]+$",
+            "description": "The name of the SAS definition."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The deleted SAS definition.",
+            "schema": {
+              "$ref": "#/definitions/SasDefinitionBundle"
+            }
+          },
+          "default": {
+            "description": "Key Vault error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/KeyVaultError"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Delete Storage Sas Definition": {
+            "$ref": "./examples//deleteStorageSasDefinition.json"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Storage"
+        ],
+        "operationId": "GetSasDefinition",
+        "description": "Gets information about a SAS definition for the specified storage account.",
+        "parameters": [
+          {
+            "name": "storage-account-name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9a-zA-Z]+$",
+            "description": "The name of the storage account."
+          },
+          {
+            "name": "sas-definition-name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9a-zA-Z]+$",
+            "description": "The name of the SAS definition."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The retrieved SAS definition.",
+            "schema": {
+              "$ref": "#/definitions/SasDefinitionBundle"
+            }
+          },
+          "default": {
+            "description": "Key Vault error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/KeyVaultError"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Get Storage Sas Definition": {
+            "$ref": "./examples//getStorageSasDefinition.json"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Storage"
+        ],
+        "operationId": "SetSasDefinition",
+        "description": "Creates or updates a new SAS definition for the specified storage account.",
+        "parameters": [
+          {
+            "name": "storage-account-name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9a-zA-Z]+$",
+            "description": "The name of the storage account."
+          },
+          {
+            "name": "sas-definition-name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9a-zA-Z]+$",
+            "description": "The name of the SAS definition."
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "required": true,
+            "x-ms-client-flatten": true,
+            "schema": {
+              "$ref": "#/definitions/SasDefinitionCreateParameters"
+            },
+            "description": "The parameters to create a SAS definition."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The created SAS definition.",
+            "schema": {
+              "$ref": "#/definitions/SasDefinitionBundle"
+            }
+          },
+          "default": {
+            "description": "Key Vault error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/KeyVaultError"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Set Storage Sas definition": {
+            "$ref": "./examples//setStorageSasDefinition.json"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Storage"
+        ],
+        "operationId": "UpdateSasDefinition",
+        "description": "Updates the specified attributes associated with the given SAS definition.",
+        "parameters": [
+          {
+            "name": "storage-account-name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9a-zA-Z]+$",
+            "description": "The name of the storage account."
+          },
+          {
+            "name": "sas-definition-name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "pattern": "^[0-9a-zA-Z]+$",
+            "description": "The name of the SAS definition."
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "required": true,
+            "x-ms-client-flatten": true,
+            "schema": {
+              "$ref": "#/definitions/SasDefinitionUpdateParameters"
+            },
+            "description": "The parameters to update a SAS definition."
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The updated SAS definition.",
+            "schema": {
+              "$ref": "#/definitions/SasDefinitionBundle"
+            }
+          },
+          "default": {
+            "description": "Key Vault error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/KeyVaultError"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Update Storage Sas definition": {
+            "$ref": "./examples//updateStorageSasDefinition.json"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SasDefinitionAttributes": {
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "the enabled state of the object."
+        },
+        "created": {
+          "type": "integer",
+          "format": "unixtime",
+          "readOnly": true,
+          "description": "Creation time in UTC."
+        },
+        "updated": {
+          "type": "integer",
+          "format": "unixtime",
+          "readOnly": true,
+          "description": "Last updated time in UTC."
+        }
+      },
+      "description": "The SAS definition management attributes."
+    },
+    "SasDefinitionBundle": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The SAS definition id.",
+          "readOnly": true
+        },
+        "sid": {
+          "x-ms-client-name": "SecretId",
+          "type": "string",
+          "description": "Storage account SAS definition secret id.",
+          "readOnly": true
+        },
+        "templateUri": {
+          "x-ms-client-name": "TemplateUri",
+          "type": "string",
+          "description": "The SAS token template uri.",
+          "readOnly": true
+        },
+        "sasType": {
+          "x-ms-client-name": "SasType",
+          "type": "string",
+          "description": "The SAS token type.",
+          "readOnly": true
+        },
+        "validityPeriod": {
+          "x-ms-client-name": "ValidityPeriod",
+          "type": "string",
+          "description": "The SAS token validity period.",
+          "readOnly": true
+        },
+        "attributes": {
+          "$ref": "#/definitions/SasDefinitionAttributes",
+          "description": "The SAS definition attributes.",
+          "readOnly": true
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Application specific metadata in the form of key-value pairs",
+          "readOnly": true
+        }
+      },
+      "description": "A SAS definition bundle consists of key vault SAS definition details plus its attributes."
+    },
+    "SasDefinitionCreateParameters": {
+      "properties": {
+        "templateUri": {
+          "x-ms-client-name": "TemplateUri",
+          "type": "string",
+          "description": "The SAS token template uri.",
+          "readOnly": true
+        },
+        "sasType": {
+          "x-ms-client-name": "SasType",
+          "type": "string",
+          "description": "The SAS token type.",
+          "readOnly": true
+        },
+        "validityPeriod": {
+          "x-ms-client-name": "ValidityPeriod",
+          "type": "string",
+          "description": "The SAS token validity period.",
+          "readOnly": true
+        },
+        "attributes": {
+          "x-ms-client-name": "SasDefinitionAttributes",
+          "$ref": "#/definitions/SasDefinitionAttributes",
+          "description": "The attributes of the SAS definition."
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Application specific metadata in the form of key-value pairs."
+        }
+      },
+      "description": "The SAS definition create parameters.",
+      "required": [ "parameters" ]
+    },
+    "SasDefinitionUpdateParameters": {
+      "properties": {
+        "templateUri": {
+          "x-ms-client-name": "TemplateUri",
+          "type": "string",
+          "description": "The SAS token template uri.",
+          "readOnly": true
+        },
+        "sasType": {
+          "x-ms-client-name": "SasType",
+          "type": "string",
+          "description": "The SAS token type.",
+          "readOnly": true
+        },
+        "validityPeriod": {
+          "x-ms-client-name": "ValidityPeriod",
+          "type": "string",
+          "description": "The SAS token validity period.",
+          "readOnly": true
+        },
+        "attributes": {
+          "x-ms-client-name": "SasDefinitionAttributes",
+          "$ref": "#/definitions/SasDefinitionAttributes",
+          "description": "The attributes of the SAS definition."
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Application specific metadata in the form of key-value pairs."
+        }
+      },
+      "description": "The SAS definition update parameters."
+    },
+    "KeyVaultError": {
+      "properties": {
+        "error": {
+          "readOnly": true,
+          "$ref": "#/definitions/Error"
+        }
+      },
+      "description": "The key vault error exception."
+    },
+    "Error": {
+      "properties": {
+        "code": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The error code."
+        },
+        "message": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The error message."
+        },
+        "innererror": {
+          "x-ms-client-name": "innerError",
+          "readOnly": true,
+          "$ref": "#/definitions/Error"
+        }
+      },
+      "description": "The key vault server error."
+    }
+  },
+  "parameters": {
+    "ApiVersionParameter": {
+      "name": "api-version",
+      "in": "query",
+      "required": true,
+      "type": "string",
+      "description": "Client API version."
+    }
+  }
+}
